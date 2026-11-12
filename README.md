@@ -679,7 +679,7 @@ En un entorno productivo, las credenciales deben almacenarse y administrarse de 
 
 ## 12. Conclusión
 
-ESolutions Payments demuestra una arquitectura configurable para consultar y mostrar compañías de servicios mediante diferentes canales.
+Payments demuestra una arquitectura configurable para consultar y mostrar compañías de servicios mediante diferentes canales.
 
 La separación en tres capas —Business, Data y Web— permite mantener las responsabilidades organizadas y facilita el mantenimiento y la evolución de la solución.
 

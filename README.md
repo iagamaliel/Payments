@@ -264,7 +264,7 @@ Por lo tanto, al ejecutar la aplicación web también estarán disponibles los e
 ### 4.1 Abrir la solución
 
 1. Abrir Visual Studio 2022.
-2. Cargar el archivo `ESolutions.Payments.sln`.
+2. Cargar el archivo `Payments.sln`.
 3. Verificar que los tres proyectos estén cargados correctamente.
 4. Restaurar los paquetes NuGet necesarios.
 5. Compilar la solución.

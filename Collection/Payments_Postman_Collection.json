@@ -1,0 +1,247 @@
+{
+  "info": {
+    "_postman_id": "6f6d1f9e-1b21-4d3a-9e2a-2f8d7b4c9101",
+    "name": "e-Solutions Payments - Channel API Tests",
+    "description": "Tests for GET /api/v1/companies using channel-specific X-Api-Key authentication. Update collection variables if the local HTTPS port or test keys change. Unknown-channel expectation is 404; adjust if your controller intentionally returns another status.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:44352",
+      "type": "string"
+    },
+    {
+      "key": "abApiKey",
+      "value": "AB-DEMO-API-KEY",
+      "type": "string"
+    },
+    {
+      "key": "cjApiKey",
+      "value": "CJ-DEMO-API-KEY",
+      "type": "string"
+    },
+    {
+      "key": "invalidApiKey",
+      "value": "INVALID-API-KEY",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Successful authentication",
+      "item": [
+        {
+          "name": "AB - Valid channel and API key",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{abApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=AB",
+            "description": "Expected: 200 OK. AB is active and has ShowMenu=true."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CJ - Valid channel and API key",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{cjApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=CJ",
+            "description": "Expected: 200 OK. CJ is active and has ShowMenu=false."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 - Authentication failures",
+      "item": [
+        {
+          "name": "AB - Missing API key",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/v1/companies?channel=AB",
+            "description": "Expected: 401 Unauthorized when X-Api-Key is absent."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AB - Invalid API key",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{invalidApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=AB",
+            "description": "Expected: 401 Unauthorized when the key does not match AB."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "AB - CJ key used against AB channel",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{cjApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=AB",
+            "description": "Expected: 401 Unauthorized. A key from another channel must not be accepted."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "CJ - AB key used against CJ channel",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{abApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=CJ",
+            "description": "Expected: 401 Unauthorized. A key from another channel must not be accepted."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP status is 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 - Channel validation",
+      "item": [
+        {
+          "name": "Unknown channel - ZZ",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{invalidApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies?channel=ZZ",
+            "description": "Recommended behavior: 404 Not Found for an unknown or inactive channel. This request deliberately uses an invalid key too; if your API validates channel first, expect 404. If it validates credentials first, expect 401. Review controller behavior."
+          },
+          "response": []
+        },
+        {
+          "name": "Missing channel parameter",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{cjApiKey}}",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/companies",
+            "description": "Recommended behavior: 400 Bad Request when channel is missing. The AB key is used here only as a sample; adapt if your API validates the channel before credentials."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

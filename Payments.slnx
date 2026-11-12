@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Business/">
+    <Project Path="Payments.Business/Payments.Business.csproj" Id="32b4702d-6a7d-41d3-ac71-2d82e0f5ded5" />
+  </Folder>
+  <Folder Name="/Data/">
+    <Project Path="Payments.Data/Payments.Data.csproj" Id="095b7696-fa6d-433d-ad9a-dc3dd16bafb6" />
+  </Folder>
+  <Folder Name="/Web/">
+    <Project Path="Payments.Web/Payments.Web.csproj" Id="53e136f3-4b8c-4763-bd9c-ecfdf51516c3" />
+  </Folder>
+</Solution>

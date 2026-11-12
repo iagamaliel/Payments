@@ -687,7 +687,7 @@ Canal CJ
 ![Inicio de sesión](Docs/images/Page_Companies_Canal_CJ.PNG)
 
 
-Canal CJ
+Page Destination
 ![Inicio de sesión](Docs/images/Page_Destination.PNG)
 
 ---

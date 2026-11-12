@@ -1,4 +1,4 @@
-# ESolutions Payments
+# Payments
 
 Aplicación web para la consulta y selección de compañías de servicios, desarrollada con **C#, ASP.NET Web Forms, ADO.NET y SQL Server**.
 
@@ -28,18 +28,18 @@ La configuración de los canales se administra desde SQL Server, permitiendo inc
 La solución está organizada en tres proyectos principales, aplicando separación de responsabilidades:
 
 ```text
-ESolutions.Payments
+Payments
 │
-├── ESolutions.Payments.Business
+├── Payments.Business
 │
-├── ESolutions.Payments.Data
+├── Payments.Data
 │
-└── ESolutions.Payments.Web
+└── Payments.Web
 ```
 
 ### 2.1 Business Layer
 
-**Proyecto:** `ESolutions.Payments.Business`
+**Proyecto:** `Payments.Business`
 
 Contiene los modelos, contratos y lógica de negocio de la aplicación.
 
@@ -70,7 +70,7 @@ Business
 
 ### 2.2 Data Layer
 
-**Proyecto:** `ESolutions.Payments.Data`
+**Proyecto:** `Payments.Data`
 
 Responsable del acceso a datos mediante ADO.NET.
 
@@ -105,7 +105,7 @@ Este procedimiento recibe el código del canal y devuelve su configuración acti
 
 ### 2.3 Web Layer
 
-**Proyecto:** `ESolutions.Payments.Web`
+**Proyecto:** `Payments.Web`
 
 Responsable de la interfaz de usuario, los endpoints HTTP, la comunicación entre capas y la navegación de la aplicación.
 
@@ -135,9 +135,6 @@ Web
 ├── Destination.aspx
 ├── Destination.aspx.cs
 │
-├── Content
-│   └── Images
-│       └── company-placeholder.png
 │
 ├── Global.asax
 └── Web.config
@@ -148,7 +145,7 @@ Web
 La aplicación utiliza una base de datos denominada:
 
 ```text
-ESolutionsPayments
+Payments
 ```
 
 Los scripts SQL se encuentran organizados dentro de la carpeta `Database`.
@@ -277,7 +274,7 @@ Por lo tanto, al ejecutar la aplicación web también estarán disponibles los e
 Establecer el siguiente proyecto como Startup Project:
 
 ```text
-ESolutions.Payments.Web
+Payments.Web
 ```
 
 ### 4.3 Verificar la dirección de la aplicación

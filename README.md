@@ -677,7 +677,18 @@ En un entorno productivo, las credenciales deben almacenarse y administrarse de 
 ---
 
 ## 📸 Capturas de pantalla
+Page Default
+![Inicio de sesión](Docs/images/Page_Default.PNG)
+
+Canal AB
 ![Inicio de sesión](Docs/images/Companies_Canal_ab.PNG)
+
+Canal CJ
+![Inicio de sesión](Docs/images/Page_Companies_Canal_CJ.PNG)
+
+
+Canal CJ
+![Inicio de sesión](Docs/images/Page_Destination.PNG)
 
 ---
 
